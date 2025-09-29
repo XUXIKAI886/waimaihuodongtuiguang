@@ -25,8 +25,6 @@ hero:
 - 继续阅读 **外卖推广知识**，选择对应流量工具提升曝光与拉新。
 - 配合门店数据持续复盘，逐步优化 ROI 与顾客满意度。
 
-> 配套图片位于 docs/public/images 目录，可根据需要在 Markdown 中增减展示。
-
 ## 站点亮点
 
 <div class="home-feature-grid">
