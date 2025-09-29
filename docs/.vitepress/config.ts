@@ -1,13 +1,17 @@
 import { defineConfig } from 'vitepress'
 
-// 基于部署环境动态调整基础路径
-const SITE_BASE = process.env.DEPLOY_BASE ?? '/'
+const repoBase = (() => {
+  if (process.env.DEPLOY_BASE) return process.env.DEPLOY_BASE
+  const repo = process.env.GITHUB_REPOSITORY
+  if (repo) return `/${repo.split('/')[1]}/`
+  return '/'
+})()
 
 export default defineConfig({
   lang: 'zh-CN',
-  base: SITE_BASE,
+  base: repoBase,
   title: '美团活动推广手册',
-  description: '美团营销活动与推广工具的图文知识库',
+  description: '外卖营销活动与推广工具的知识总览',
   srcDir: '.',
   themeConfig: {
     logo: '/logo.svg',
@@ -22,9 +26,9 @@ export default defineConfig({
         {
           text: '外卖活动知识',
           items: [
-            { text: '类别概览', link: '/waimai-activities/' },
+            { text: '概览', link: '/waimai-activities/' },
             {
-              text: '提升入店量',
+              text: '销量提升',
               collapsed: false,
               items: [
                 { text: '满减活动', link: '/waimai-activities/manjian-huodong' },
@@ -32,7 +36,7 @@ export default defineConfig({
               ]
             },
             {
-              text: '提升下单量',
+              text: '吸引新客',
               collapsed: false,
               items: [
                 { text: '买赠活动', link: '/waimai-activities/mai-zeng-huodong' },
@@ -49,7 +53,7 @@ export default defineConfig({
         {
           text: '外卖推广知识',
           items: [
-            { text: '类别概览', link: '/waimai-promotion/' },
+            { text: '概览', link: '/waimai-promotion/' },
             {
               text: '推广投放工具',
               collapsed: false,
@@ -62,7 +66,7 @@ export default defineConfig({
               ]
             },
             {
-              text: '经营辅助工具',
+              text: '经营配套能力',
               collapsed: false,
               items: [
                 { text: '金字招牌', link: '/waimai-promotion/operation-support/jinzi-zhaopai' },
